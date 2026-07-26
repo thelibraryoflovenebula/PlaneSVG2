@@ -84,26 +84,28 @@ class plane {
 
 
 /** 2. Cloud class
+ * this class has only the Cloud object maker
  * 
  */
 class cloud {
-    constructor() {
-       this.cloudList = [];
+    constructor(x,y) {
+       this.cloud = this.cloudObject(x,y);
+       this.x = x + 3;
+       this.y = y - 2;
+       this.width = 60;
+       this.height = 25;
     }
 
-    /** CREATE CLOUD METHOD
-     * this method creates randomly generated clouds
-     * 
-     * @param {how many clouds you want to make in (or outside) the Window Class} howMany 
-     */
-    createCloud(howMany) {
-        for(let i = 0; i < howMany ;i++ ) {
-            let cloudX = Math.floor(Math.random() * 1000);//generate x position (0-400)
-            let cloudY = Math.floor(Math.random()* 400);//generate y position (0-1000)
-            let newCloud = this.cloudObject(cloudX, cloudY); //call cloudObject function
+    getCloud() {
+        return this.cloud;
+    }
 
-            this.cloudList.push(newCloud); //add cloud object into the cloudList array
-        }
+    getX() {
+        return this.x;
+    }
+
+    getY(){
+        return this.y;
     }
 
     /** CLOUD OBJECT 
@@ -112,7 +114,7 @@ class cloud {
      * 
      * each should look like this in the html:
      * 
-     * <g class="clouds and shit">
+     * <g class="cloudsandshit">
      * <circle cx="newX" cy="newY + 10" r="18" fill="white" />
      * <circle cx="newX + 30" cy="newY + 7" r=26" fill="white" />
      * <circle cx="newX + 60" cy="newY + 10" r="18" fill="white" />
@@ -169,13 +171,7 @@ class cloud {
 
             cloudCanvas.appendChild(cloudnewgroup);
 
-            return {
-                x: newX + 3,
-                y: newY - 2,
-                width: 60,
-                height: 25
-            };
-
+            return cloudnewgroup;
     }
 
 
@@ -184,26 +180,78 @@ class cloud {
 
 
 /** 3 Clouds 
- *  has array list of clouds
+ *  this class houses the array list of clouds
  * 
  */
 
 class clouds {
+    constructor() {
+        this.cloudList = []; //cloud list array
+    }
+           
+    /** CREATE CLOUD METHOD
+     * this method creates randomly generated clouds
+     * 
+     * @param {how many clouds you want to make in (or outside) the Window Class} howMany 
+     */
+    createCloud(howMany) {
+        for(let i = 0; i < howMany ;i++) {
+            let cloudX = Math.floor(Math.random() * 1000);//generate x position (0-400)
+            let cloudY = Math.floor(Math.random()* 400);//generate y position (0-1000)
+            let newCloud = new cloud(cloudX, cloudY);
 
+            this.cloudList.push(newCloud); //add cloud object into the cloudList array
+        }
+    }
+    /**GETER FOR CLOUD LIST
+     * 
+     * @returns  the cloud list
+     */
+    getCloudList () {
+        return this.cloudList;
+    }
+
+    /** REMOVE CLOUD FUNCTION
+     * 
+     * @param {*} index 
+     */
+    removeCloud(index) {
+        this.cloudList[index].remove();
+    }
+
+
+
+    /** CLOUDS RESET FUNCTION
+     * 
+     * used in reset clouds button
+     * 
+     */
+    deleteAllClouds() {
+        cloudCanvas.replaceChildren();
+        this.cloudList.length = 0;
+    }
 
 
 
 }
+
+
+
+
+
 
 /** 4. Sky Window class 
  * 
  */
 class skyWindow {
     constructor() {
-        this.collided = false; //starts at not collided
-        this.clouds = new cloud(); //everytime constructor is called, make a new cloud and insert it
-        this.cloudList = this.clouds.cloudList; //initialize the cloudlist for window class
+        this.cloudPoints = 0;
+        this.clouds = new clouds(); //everytime constructor is called, make a new clouds and insert it
         this.plane = new plane(document.getElementById("plane")) //gets group of plane (img, hitbox)
+        
+        this.collided = false; //starts at not collided
+        this.cloudList = this.clouds.cloudList; //initialize the cloudlist for window class
+
     }
 
     /** GAMESTART FUNCTION 
@@ -270,39 +318,73 @@ class skyWindow {
      * 
      */
     checkCollisionAll() {
-        let storedIndex = 0; // ????? idk what this does
+        let changeText =  document.getElementById("change");
 
         for(let i = 0; i < this.cloudList.length; i++) { //go through all the of the current cloudList array
             if (this.checkCollisionOne(this.cloudList[i])) {
-                storedIndex = i; // still dont know what this does??
+                this.cloudList[i].getCloud().remove();
+                this.cloudList.splice(i,1);
                 this.collided = true;
+                this.cloudPoints++;
+
+                break;
+            } else {
+                this.collided = false;
             }
+
+
+            if (this.collided) {
+                changeText.className = "collided";  
+            }
+            else {
+                changeText.className = "not";
+            }
+
+
+
         }
 
-        let changeText =  document.getElementById("change");
-        
-        if(collided) {
-            changeText.className = "collided";
-            this.cloudList[storedIndex].element.remove();
-            this.cloudList.splice(storedIndex,1);
+        if (this.cloudList.length == 0) {
+            this.clouds.createCloud(100);
         }
-        else {
-            changeText.className = "not";
-        }
-        
 
+        
     }
-    
-    /** CLOUDS RESET FUNCTION
+
+
+    /** RESETS THE SKY
      * 
-     * used in reset clouds button
+     * delete all clouds in the array,
+     * then add as much
      * 
      */
     resetSky() {
-        cloudCanvas.replaceChildren();
-        this.cloudList.length = 0;
-        this.clouds.createCloud(30);
+       this.clouds.deleteAllClouds(); 
+       this.clouds.createCloud(30);
     }
+
+
+    /**SHOW POINT FUNCTION
+     * 
+     * is updateable and is used in a setInterval function for ever 50 ms
+     * changes text
+     */
+    showPoints() {
+        let cloudText = document.getElementById("cloudCount");
+        cloudText.innerHTML = "Number of clouds eaten: " + this.cloudPoints;
+    }
+
+    /**ABILITY TO ERASE IN A BIG CIRCLE WHEN DOUBLE CLICKED
+     * 
+     * 
+     */
+    coolAbility() {
+
+    }
+
+    
+    
+    
 
 }
 
@@ -315,7 +397,6 @@ class skyWindow {
 
 let addClick = document.getElementById("addClick");
 let resetClick = document.getElementById("resetClick");
-let cloudPoints = 0;
 
 let planeHitBox = document.getElementById("planeHitBox");
 let cloudCanvas = document.getElementById("cloudCanvas");
@@ -351,8 +432,9 @@ newGame.skyStart(50); //start the game with 10 clouds
 
 addClick.addEventListener("click", () => {      newGame.skyCloudAdd();  });
 resetClick.addEventListener("click", () => {    newGame.resetSky();     });
-setInterval( () => {newGame.checkCollisionAll(); } ,50); //for every 50 milliseconds, check if the plane is colided
-
+wholeWindow.addEventListener("dbclick", () => { newGame.coolAbility(); });
+setInterval( () => {newGame.checkCollisionAll(); } , 1); //for every 50 milliseconds, check if the plane is colided
+setInterval( () => {newGame.showPoints();} , 50); //check cloud points to update
 
 
 
