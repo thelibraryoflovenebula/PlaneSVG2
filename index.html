@@ -1,0 +1,87 @@
+<!--  HTML FILE DOCUMENTATION HEADER
+Name: Neil Patrick Olaires
+Course: COMP 10259
+Assignment: A4
+Date: July 16 2026
+
+ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/courses/14183~128899/files/14183~26560378/course%20files/CSIDE-Summer2026/assignments/A4/specification.html
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title> Cloud Eater </title>
+        <link rel="stylesheet" href="index.css">
+        <script src="index.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1 id="change" class="bruh"> Clouds & planes </h1>
+            <p> Click the sky window and move your mouse to hit the clouds</p>
+            <p> Double click to activate super mode! (Redeem at 100 clouds) </p>
+        </header>
+
+
+        <main class="one"> <!-- where all the svg stuff is going to be happening-->
+            <svg id="skyWindow" width="1000" height="400"> 
+
+
+                <g id="plane"> <!-- this is our plane svg and its hitbox-->
+                    <image id="planeImg" href="images/plane2.svg" width="100" height="45" y="-20"/>
+                    <rect id="plantHitBox" width="100" height="20" fill="none" stroke="black"/>
+                </g>
+
+                <g id="cloudCanvas"><!-- this is where our clouds objects will live-->
+
+
+
+                </g>
+
+
+
+
+            </svg>
+            <p>Click window to move mouse</p>
+        </main>
+
+        <main class="two">
+            <div class="buttons"> 
+                <button id="resetClick"> Reset Clouds</button>
+                <button id="addClick" > Add Clouds</button>
+            </div>
+
+
+            <div id="cloudCountText"> 
+                <p id="cloudCount"> Number of clouds eaten: </p>
+            </div>
+
+
+
+
+        </main>
+
+
+
+
+
+    </body>
+</html>
+<!--
+
+MARK BREAKDOWN
+Requirement	Marks
+
+Submission requirements (to dropbox & CSUNIX)	
+SVG game or animation	
+Two JavaScript events and SVG image	(✅,)
+Dynamic create/remove SVG element	
+SVG shape components	
+State variable	✅
+CSS animation	
+Event listener, button, or clickable image	✅
+Responsive/mobile support	✅
+Original work✅
+
+
+-->

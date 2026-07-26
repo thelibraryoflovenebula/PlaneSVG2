@@ -1,0 +1,35 @@
+/* CSS FILE DOCUMENTATION HEADER
+Name: Neil Patrick Olaires
+Course: COMP 10259
+Assignment: A4
+Date: July 16 2026
+*/
+
+body {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#skyWindow {
+    background-color: lightblue;
+    border-radius: 2em;
+    border: 2px solid black;
+}
+
+
+/* TEMPORARY COLLISION FUNCTIONS*/
+.collided {
+    color: red;
+}
+
+.not {
+    color: black;
+}
