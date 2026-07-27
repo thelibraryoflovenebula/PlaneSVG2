@@ -4,6 +4,8 @@ Course: COMP 10259
 Assignment: A4
 Date: July 16 2026
 
+Notes for professor: only works on PC screen
+
 ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/courses/14183~128899/files/14183~26560378/course%20files/CSIDE-Summer2026/assignments/A4/specification.html
 -->
 
@@ -24,26 +26,38 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
         <main class="two">
 
             <div class="container">
-                <div class="row"> 
-                    <div class="col-2 buttons"> 
-                        <button class="butts" id="resetClick"> Reset Clouds</button>
-                        <button class="butts" id="addClick" > Add Clouds</button>
-                    </div>
 
+                
 
-                    <div class="col-2" id="cloudCountText"> 
+                <div class="row">
+
+                    <div class="col" id="cloudCountText"> 
                         <h1> Number of clouds eaten: </h1>
                         <h1 id="cloudCount"></h1>
                     </div>
                 </div>
+
+                <div class="row bruh"> 
+                    <div class="col"> 
+                        <button class="butts" id="resetClick"> Reset Clouds</button>
+                        <button class="butts" id="addClick" > Add 200 Clouds</button>
+                    </div>
+
+                </div>
+
+
+
             </div>
-            
+
+
         </main>
 
 
 
         <main class="one"> <!-- where all the svg stuff is going to be happening-->
-            <svg class="afternoonState" id="skyWindow" width="1000" height="400"> 
+            <svg    onclick="addCloudsHTML()" 
+                    ondblclick="changeSkyHTML()"
+                    class="afternoonState" id="skyWindow" width="1000" height="400"> 
 
 
                 <g id="plane"> <!-- this is our plane svg and its hitbox-->
@@ -67,9 +81,13 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
         </main>
 
         <header>
-            <p> Drag the your mouse to eat the clouds!</p>
-            <p> Double click to change time!</p>
-            <p> Super mode will activate at every 500 clouds!</p>
+            <div id="instructions">
+                <h1> Instructions:  </h1>
+                <p> 1. Drag the your mouse to eat the clouds!</p>
+                <p> 2. Click on window to add clouds 30!</p>
+                <p> 3. Double click on window to change time of day!</p>
+                <p> 4. <b>Super mode</b> will activate at every <b>500</b> clouds!</p>
+            </div>
         </header>
 
         
@@ -90,14 +108,13 @@ Two JavaScript events and SVG image	(✅, ✅) [click, mouseevent, dblckick]
 Dynamic create/remove SVG element	✅
 SVG shape components	✅
 State variable	✅
-CSS animation	
+CSS animation	✅
 Event listener, button, or clickable image	✅
 Responsive/mobile support	✅
 Original work✅
 
 NOTES FOR ME:
 - finish css animation,
-my idea is to stitch the sky images vertically and shift them when dblclicked
 
 
 

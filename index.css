@@ -7,11 +7,12 @@ Date: July 16 2026
 
 body {
     background-color: black;
-    color: white;
     justify-content: center;
+    color: white;
     align-items: center;
     min-height: 100vh;
     text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 html, body {
@@ -22,7 +23,120 @@ html, body {
 
 #skyWindow {
     border-radius: 2em;
+    margin: 10px;
     border: 5px solid rgb(255, 255, 255);
+}
+
+#change {
+    font-size: 8em;
+}
+
+#cloudCount {
+    padding: 0;
+    margin: 0;
+    font-size: 10em;
+}
+
+
+
+.bruh {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+#instructions {
+    border: 2px solid white;
+    margin: 0 20em 0 20em;
+    line-height: 5px;
+    border-radius: 1em;
+    background-color: rgb(41, 40, 39);
+}
+
+.butts {
+    padding: 1em;
+    font-size: 1em;
+    border-radius: 1em;
+    background-color: beige;
+}
+
+#resetClick {
+    background-color: rgb(223, 203, 203);
+}
+
+
+#addClick {
+    background-color: #cbdcdf;
+}
+
+#instructions {
+    
+}
+
+
+
+/*
+ANIMATION CLASSES
+*/
+
+.update {
+    color: white;
+}
+
+.superMode {
+    color: white;
+    animation: super 1s;
+}   
+@keyframes super {
+    0% {
+        color: red;
+        border-color: red;
+    }
+
+    12.5% {
+        color: orange;
+        border-color: orange;
+    }
+
+    25% {
+        color: yellow;
+        border-color: yellow;
+    }
+
+    37.5% {
+        color: green;
+        border-color: green;
+    }
+    
+    50% {
+        color: blue;
+        border-color: blue;
+    }
+
+    62.5% {
+        color: rgb(160, 28, 255);
+        border-color: rgb(160, 28, 255);
+
+    }
+
+    75% {
+        color: violet;
+        border-color: violet;
+    }
+
+    87.5% {
+        color: pink;
+        border-color: pink
+    }
+
+    100% {
+        color: rgb(255, 255, 255);
+        border-color: white;
+    }
+
+
+
 }
 
 
@@ -79,42 +193,3 @@ html, body {
         filter: brightness(1);
     }
 }
-
-
-/* TEMPORARY COLLISION FUNCTIONS*/
-.collided {
-    color: red;
-}
-
-.not {
-    color: black;
-}
-
-#change {
-    color: white;
-    font-size: 5em;
-}
-
-#cloudCount {
-    padding: 0;
-    margin: 0;
-    font-size: 10em;
-}
-
-.butts {
-    padding: 1em;
-    font-size: 1em;
-    border-radius: 1em;
-    background-color: beige;
-}
-
-
-#resetclick {
-
-}
-
-
-#addclick {
-
-}
-

@@ -27,7 +27,7 @@ class plane {
      * Created once in window class, plane starts at position 100,150
      * 
      * 
-     * @param {i dont know yet, please update this} element 
+     * @param {the svg group that represents the plane} element 
      */
     constructor(element) {
         this.element = element;
@@ -86,6 +86,13 @@ class plane {
  * 
  */
 class cloud {
+    /** CLOUD CONSTRUCTOR 
+     * creates cloud when new cloud() is called, but takes in
+     * two parameters, one for x position and second for y position
+     * 
+     * @param {x position that the cloud will be generated on} x 
+     * @param {y position that the cloud will be generated on} y 
+     */
     constructor(x,y) {
        this.cloud = this.cloudObject(x,y);
        this.x = x + 3;
@@ -94,14 +101,27 @@ class cloud {
        this.height = 25;
     }
 
+    /**getter for cloud object
+     * 
+     * @returns the object for the specified cloud
+     */
     getCloud() {
         return this.cloud;
     }
+
+    /** getter for cloud's x variable
+     * 
+     * @returns  the x coordinated of a 'grabbed' cloud object
+     */
 
     getX() {
         return this.x;
     }
 
+    /** getter for cloud's y variable
+     * 
+     * @returns  the y coordinated of a 'grabbed' cloud object
+     */
     getY(){
         return this.y;
     }
@@ -184,6 +204,17 @@ class cloud {
  */
 
 class clouds {
+
+    /** CLOUDS CONSTRUCTOR
+     *  initializes an array of object clouds,
+     *  is created on constructor,
+     * 
+     *  starts off with index 0, but is added and deleted on with these methods
+     *  skyStart()
+     *  createCloud()
+     *  removeCloud()
+     *  deleteAllClouds()
+     */
     constructor() {
         this.cloudList = []; //cloud list array
     }
@@ -244,6 +275,12 @@ class clouds {
  * is referenced as "newGame" object in main method
  */
 class skyWindow {
+    /** SKY WINDOW CONSTRUCTOR
+     * initializes state variables timeSwitch and cloudPOints
+     * association with clouds and plane objects to call upon their functions
+     * calls for clouds array named cloudList to manipulate index 
+     * 
+     */
     constructor() {
         this.timeSwitch = 0;
         this.cloudPoints = 0;
@@ -268,9 +305,11 @@ class skyWindow {
      * 
      * used in "Add Cloud" function/addEventListener
      * creates 3 clouds upon every click
+     * 
+     * @param {the amount of clouds you want to make} x
      */
-    skyCloudAdd() {
-        this.clouds.createCloud(200);
+    skyCloudAdd(x) {
+        this.clouds.createCloud(x);
     }
 
     /**HELPER FUNCTION FOR checkCollisionAll() method
@@ -285,6 +324,23 @@ class skyWindow {
      * @returns {state of if its collided} true, false
      */
     checkCollisionOne(cloudObject) {
+        /** POINTS EXPLAINED
+         * 
+         * pointA = cloud left
+         * pointB = cloud right
+         * pointC = plane left 
+         * pointD = plane right
+         * 
+         * pointE = cloud top
+         * pointF = cloud bottom
+         * pointG = plane top
+         * pointH = plane bottom
+         * 
+         * i used letters A-F because i had to visualize the math
+         * in shape format and i had named them points a,b,c etc...
+         * 
+         * 
+         */
         let planebruh = this.plane; 
 
         let pointA = cloudObject.x;
@@ -348,7 +404,7 @@ class skyWindow {
         if (this.cloudList.length == 0) {
             this.clouds.createCloud(100);
         }
-
+        this.checkSuperMode();
         
     }
 
@@ -367,7 +423,7 @@ class skyWindow {
 
     /**SHOW POINT FUNCTION
      * 
-     * is updateable and is used in a setInterval function for ever 50 ms
+     * updates the displayed cloud score  and is used in a setInterval function for ever 50 ms
      * changes text
      */
     showPoints() {
@@ -393,6 +449,30 @@ class skyWindow {
         }
 
         
+    }
+
+    /** CHECK SUPER MODE FUNCTION
+     *  this function checks if the superMode is able to be made
+     *  super mode activates every 500 points (modulo), and lasts 2 seconds
+     * 
+     * i need to also restart it back so its not in super mode and i made 
+     * it so that when it goes 100 points after super mode it switches back the class
+     * to normal 
+     *
+     * IS USED IN CHECKCOLLISION so that it checks as fast as it checks with collision 
+     *      ->which is 1 ms 
+     * 
+     */
+    checkSuperMode() {
+
+        if (((this.cloudPoints % 500) == 100) && (this.cloudPoints > 0)) {
+            document.body.setAttribute("class", "update");
+        }
+
+        if (((this.cloudPoints % 500) == 0) && (this.cloudPoints > 0)) {
+            document.body.setAttribute("class", "superMode");
+        }
+
     }
 
     
@@ -421,15 +501,29 @@ let newGame = new skyWindow(); //make a new game by creating a new window object
 
 //-----------------3. Functions------------------//
 
+/** MOUSE MOVEMENT FUNCTION
+ * 
+ * this is the main function that allows for the plane movement using the mouse
+ * is tracked within the SVG widnow
+ * 
+ */
 wholeWindow.addEventListener( "mousemove", function(event){
     const point = wholeWindow.createSVGPoint();
     point.x = event.clientX;
     point.y = event.clientY;
     const svgPoint = point.matrixTransform(wholeWindow.getScreenCTM().inverse());
 
-    newGame.plane.moveTo(svgPoint.x - 40, svgPoint.y - 10)
+    newGame.plane.moveTo(svgPoint.x - 40, svgPoint.y - 10); 
 }
 );
+
+function addCloudsHTML(){
+    newGame.skyCloudAdd(30);
+}
+
+function changeSkyHTML() {
+    newGame.coolAbility();
+}
 
 
 
@@ -445,9 +539,9 @@ newGame.skyStart(50); //start the game with 10 clouds
 
 addClick.addEventListener("click", () => {      newGame.skyCloudAdd();  });
 resetClick.addEventListener("click", () => {    newGame.resetSky();     });
-wholeWindow.addEventListener("dblclick", () => { newGame.coolAbility(); });
 setInterval( () => {newGame.checkCollisionAll(); } , 1); //for every 50 milliseconds, check if the plane is colided
 setInterval( () => {newGame.showPoints();} , 50); //check cloud points to update
+setInterval( () => {newGame.checkSuperMode}, 50);
 
 
 
