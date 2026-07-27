@@ -241,6 +241,7 @@ class clouds {
 
 /** 4. Sky Window class 
  * 
+ * is referenced as "newGame" object in main method
  */
 class skyWindow {
     constructor() {
@@ -269,7 +270,7 @@ class skyWindow {
      * creates 3 clouds upon every click
      */
     skyCloudAdd() {
-        this.clouds.createCloud(10);
+        this.clouds.createCloud(200);
     }
 
     /**HELPER FUNCTION FOR checkCollisionAll() method
@@ -371,7 +372,7 @@ class skyWindow {
      */
     showPoints() {
         let cloudText = document.getElementById("cloudCount");
-        cloudText.innerHTML = "<br>" + this.cloudPoints + "</br>";
+        cloudText.innerHTML = "<b>" + this.cloudPoints + "</b>";
     }
 
     /**ABILITY TO CHANGE BACKGROUND WHEN DOUBLE CLICKED

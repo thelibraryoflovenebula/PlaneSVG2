@@ -12,15 +12,34 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
     <head>
         <meta charset="UTF-8">
         <title> Cloud Eater </title>
+        <!-- BOOTSTRAP--> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
         <link rel="stylesheet" href="index.css">
         <script src="index.js" defer></script>
+        
+    
     </head>
     <body>
-        <header>
-            <h1 id="change" class="bruh"> Clouds & planes </h1>
-            <p> Click the sky window and move your mouse to hit the clouds</p>
-            <p> Double click to erase circle </p>
-        </header>
+        <h1 id="change" class="bruh"> Clouds Eater </h1>
+        
+        <main class="two">
+
+            <div class="container">
+                <div class="row"> 
+                    <div class="col-2 buttons"> 
+                        <button class="butts" id="resetClick"> Reset Clouds</button>
+                        <button class="butts" id="addClick" > Add Clouds</button>
+                    </div>
+
+
+                    <div class="col-2" id="cloudCountText"> 
+                        <h1> Number of clouds eaten: </h1>
+                        <h1 id="cloudCount"></h1>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+
 
 
         <main class="one"> <!-- where all the svg stuff is going to be happening-->
@@ -43,25 +62,17 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
 
             </svg>
             <p>Click window to move mouse</p>
+
+            
         </main>
 
-        <main class="two">
-            <div class="buttons"> 
-                <button id="resetClick"> Reset Clouds</button>
-                <button id="addClick" > Add Clouds</button>
-            </div>
+        <header>
+            <p> Drag the your mouse to eat the clouds!</p>
+            <p> Double click to change time!</p>
+            <p> Super mode will activate at every 500 clouds!</p>
+        </header>
 
-
-            <div id="cloudCountText"> 
-                <p> Number of clouds eaten: </p>
-                <h1 id="cloudCount"></h1>
-            </div>
-
-
-
-
-        </main>
-
+        
 
 
 
