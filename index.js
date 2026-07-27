@@ -20,8 +20,6 @@ Date: July 16 2026
 
 /** 1. Plane class
  * 
- * 
- *  
  */
 class plane {
 
@@ -118,7 +116,7 @@ class cloud {
      * <circle cx="newX" cy="newY + 10" r="18" fill="white" />
      * <circle cx="newX + 30" cy="newY + 7" r=26" fill="white" />
      * <circle cx="newX + 60" cy="newY + 10" r="18" fill="white" />
-     * <rect x="newX + 3" y="newY - 2" width="50" height="20" fill="none" stroke="black" />
+     * <rect x="newX + 3" y="newY - 2" width="50" height="20" fill="none" stroke="black" /> <!-- THIS IS TEMPORARY-->
      * </g>
      * 
      * @param {Randomly generated x position} newX 
@@ -158,16 +156,17 @@ class cloud {
             cloudnewright.setAttribute("fill", "white"); //fixed 
             cloudnewgroup.appendChild(cloudnewright);
 
-        //hit box for cloud
-        let cloudnewhitbox = document.createElementNS(NS, "rect");
-            cloudnewhitbox.setAttribute("x", newX + 3);
-            cloudnewhitbox.setAttribute("y", newY - 2);
-            cloudnewhitbox.setAttribute("width", 50);
-            cloudnewhitbox.setAttribute("height", 20); 
-            cloudnewhitbox.setAttribute("fill", "none");  
-            cloudnewhitbox.setAttribute("stroke", "black");     
-            cloudnewgroup.appendChild(cloudnewhitbox); //
+        /*hit box for cloud -> TEMPORARY TO SEE THE HITBOXES
 
+            let cloudnewhitbox = document.createElementNS(NS, "rect");
+                cloudnewhitbox.setAttribute("x", newX + 3);
+                cloudnewhitbox.setAttribute("y", newY - 2);
+                cloudnewhitbox.setAttribute("width", 50);
+                cloudnewhitbox.setAttribute("height", 20); 
+                cloudnewhitbox.setAttribute("fill", "none");  
+                cloudnewhitbox.setAttribute("stroke", "black");     
+                cloudnewgroup.appendChild(cloudnewhitbox); //
+        */
 
             cloudCanvas.appendChild(cloudnewgroup);
 
@@ -245,6 +244,7 @@ class clouds {
  */
 class skyWindow {
     constructor() {
+        this.timeSwitch = 0;
         this.cloudPoints = 0;
         this.clouds = new clouds(); //everytime constructor is called, make a new clouds and insert it
         this.plane = new plane(document.getElementById("plane")) //gets group of plane (img, hitbox)
@@ -360,7 +360,7 @@ class skyWindow {
      */
     resetSky() {
        this.clouds.deleteAllClouds(); 
-       this.clouds.createCloud(30);
+       this.clouds.createCloud(100);
     }
 
 
@@ -371,15 +371,27 @@ class skyWindow {
      */
     showPoints() {
         let cloudText = document.getElementById("cloudCount");
-        cloudText.innerHTML = "Number of clouds eaten: " + this.cloudPoints;
+        cloudText.innerHTML = "<br>" + this.cloudPoints + "</br>";
     }
 
-    /**ABILITY TO ERASE IN A BIG CIRCLE WHEN DOUBLE CLICKED
+    /**ABILITY TO CHANGE BACKGROUND WHEN DOUBLE CLICKED
      * 
      * 
      */
     coolAbility() {
+        this.timeSwitch++;
 
+        if ((this.timeSwitch % 3) == 0) { //normal time
+            wholeWindow.setAttribute("class", "afternoonState");
+        }
+        else if ((this.timeSwitch % 3) == 1) {
+            wholeWindow.setAttribute("class", "eveningState");
+        }
+        else if ((this.timeSwitch % 3) == 2) {
+            wholeWindow.setAttribute("class", "nightState");
+        }
+
+        
     }
 
     
@@ -432,7 +444,7 @@ newGame.skyStart(50); //start the game with 10 clouds
 
 addClick.addEventListener("click", () => {      newGame.skyCloudAdd();  });
 resetClick.addEventListener("click", () => {    newGame.resetSky();     });
-wholeWindow.addEventListener("dbclick", () => { newGame.coolAbility(); });
+wholeWindow.addEventListener("dblclick", () => { newGame.coolAbility(); });
 setInterval( () => {newGame.checkCollisionAll(); } , 1); //for every 50 milliseconds, check if the plane is colided
 setInterval( () => {newGame.showPoints();} , 50); //check cloud points to update
 

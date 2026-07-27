@@ -6,6 +6,8 @@ Date: July 16 2026
 */
 
 body {
+    background-color: black;
+    color: white;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -19,9 +21,63 @@ html, body {
 }
 
 #skyWindow {
-    background-color: lightblue;
     border-radius: 2em;
     border: 2px solid black;
+}
+
+
+.afternoonState {
+    background: #a3edf0;
+    background: linear-gradient(360deg, rgba(163, 237, 240, 1) 31%, rgba(138, 187, 230, 1) 99%);
+    animation: toAfternoon 1s;
+}
+@keyframes toAfternoon {
+    from {
+        background: #030026;
+        background: linear-gradient(180deg, rgba(3, 0, 38, 1) 0%, rgba(23, 23, 92, 1) 35%, rgba(75, 40, 120, 1) 100%);
+        filter: brightness(0.5);
+    }
+    to {
+        background: #a3edf0;
+        background: linear-gradient(360deg, rgba(163, 237, 240, 1) 31%, rgba(138, 187, 230, 1) 99%);
+        filter: brightness(1);
+    }
+}
+
+.eveningState {
+    background: #fff1ab;
+    background: linear-gradient(360deg,rgba(255, 241, 171, 1) 0%, rgba(219, 136, 136, 1) 50%, rgba(42, 31, 77, 1) 95%);
+    animation: toEvening 1s;
+}
+@keyframes toEvening {
+    from {
+        background: #a3edf0;
+        background: linear-gradient(360deg, rgba(163, 237, 240, 1) 31%, rgba(138, 187, 230, 1) 99%);
+        filter: brightness(0.5);
+    }
+    to {
+        background: #fff1ab;
+        background: linear-gradient(360deg,rgba(255, 241, 171, 1) 0%, rgba(219, 136, 136, 1) 50%, rgba(42, 31, 77, 1) 95%);
+        filter: brightness(1);
+    }
+}
+
+.nightState {
+    background: #030026;
+    background: linear-gradient(180deg, rgba(3, 0, 38, 1) 0%, rgba(23, 23, 92, 1) 35%, rgba(75, 40, 120, 1) 100%);
+    animation: toNight 1s;
+}
+@keyframes toNight {
+    from{
+        background: #fff1ab;
+        background: linear-gradient(360deg,rgba(255, 241, 171, 1) 0%, rgba(219, 136, 136, 1) 50%, rgba(42, 31, 77, 1) 95%);
+        filter: brightness(0.5);
+    }
+    to{
+        background: #030026;
+        background: linear-gradient(180deg, rgba(3, 0, 38, 1) 0%, rgba(23, 23, 92, 1) 35%, rgba(75, 40, 120, 1) 100%);
+        filter: brightness(1);
+    }
 }
 
 
@@ -33,3 +89,9 @@ html, body {
 .not {
     color: black;
 }
+
+#change {
+    color: white;
+}
+
+

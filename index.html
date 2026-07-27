@@ -24,12 +24,12 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
 
 
         <main class="one"> <!-- where all the svg stuff is going to be happening-->
-            <svg id="skyWindow" width="1000" height="400"> 
+            <svg class="afternoonState" id="skyWindow" width="1000" height="400"> 
 
 
                 <g id="plane"> <!-- this is our plane svg and its hitbox-->
-                    <image id="planeImg" href="images/plane2.svg" width="100" height="45" y="-20"/>
-                    <rect id="plantHitBox" width="100" height="20" fill="none" stroke="black"/>
+                    <image id="planeImg" href="images/whiteairplane.svg" width="100" height="45" y="-20"/>
+                    <!-- <rect id="plantHitBox" width="100" height="20" fill="none" stroke="black"/> -->
                 </g>
 
                 <g id="cloudCanvas"><!-- this is where our clouds objects will live-->
@@ -53,7 +53,8 @@ ASSIGNMENT NOTES http://a14183-26560378.cluster75.canvas-user-content.com/course
 
 
             <div id="cloudCountText"> 
-                <p id="cloudCount"> Number of clouds eaten: </p>
+                <p> Number of clouds eaten: </p>
+                <h1 id="cloudCount"></h1>
             </div>
 
 
@@ -73,10 +74,10 @@ MARK BREAKDOWN
 Requirement	Marks
 
 Submission requirements (to dropbox & CSUNIX)	
-SVG game or animation	
-Two JavaScript events and SVG image	(✅,)
-Dynamic create/remove SVG element	
-SVG shape components	
+SVG game or animation	✅
+Two JavaScript events and SVG image	(✅, ✅) [click, mouseevent, dblckick]
+Dynamic create/remove SVG element	✅
+SVG shape components	✅
 State variable	✅
 CSS animation	
 Event listener, button, or clickable image	✅
