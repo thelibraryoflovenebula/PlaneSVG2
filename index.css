@@ -70,10 +70,6 @@ html, body {
     background-color: #cbdcdf;
 }
 
-#instructions {
-    
-}
-
 
 
 /*
@@ -88,6 +84,10 @@ ANIMATION CLASSES
     color: white;
     animation: super 1s;
 }   
+
+/**
+THIS FUNCTION CYCLES SUPER MODE
+*/
 @keyframes super {
     0% {
         color: red;
@@ -139,6 +139,7 @@ ANIMATION CLASSES
 
 }
 
+/*  THESE ARE THE STATES THAT CHANGES, I WANTED IT TO TRANSITION NICELY BUT APPARENTLY LINEAR GRADIENTS DONT ACTUALLY SMOOTHLY SWITCH*/
 
 .afternoonState {
     background: #a3edf0;

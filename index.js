@@ -537,7 +537,7 @@ newGame.skyStart(50); //start the game with 10 clouds
 
 //-----------------5. Interval & Button functions------------------//
 
-addClick.addEventListener("click", () => {      newGame.skyCloudAdd();  });
+addClick.addEventListener("click", () => {      newGame.skyCloudAdd(200);  });
 resetClick.addEventListener("click", () => {    newGame.resetSky();     });
 setInterval( () => {newGame.checkCollisionAll(); } , 1); //for every 50 milliseconds, check if the plane is colided
 setInterval( () => {newGame.showPoints();} , 50); //check cloud points to update
