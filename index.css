@@ -6,9 +6,10 @@ Date: July 16 2026
 */
 
 body {
-    background-color: black;
+    background-image: url(images/breh.jpg);
     justify-content: center;
     color: white;
+    text-shadow: 4px 4px #71916b;
     align-items: center;
     min-height: 100vh;
     text-align: center;
@@ -24,7 +25,7 @@ html, body {
 #skyWindow {
     border-radius: 2em;
     margin: 10px;
-    border: 5px solid rgb(255, 255, 255);
+    border: 10px solid rgb(141, 184, 121);
 }
 
 #change {
@@ -37,7 +38,9 @@ html, body {
     font-size: 10em;
 }
 
-
+#change {
+    text-shadow: 10px 10px #416d4e;
+}
 
 .bruh {
     align-items: center;
@@ -47,11 +50,14 @@ html, body {
 }
 
 #instructions {
-    border: 2px solid white;
+    color: rgb(81, 85, 73);
+    text-shadow: 2px 2px white;
+    border: 3px solid rgb(44, 58, 48);
     margin: 0 20em 0 20em;
     line-height: 5px;
     border-radius: 1em;
-    background-color: rgb(41, 40, 39);
+    background-image: url(images/sss.png);
+
 }
 
 .butts {
@@ -68,6 +74,13 @@ html, body {
 
 #addClick {
     background-color: #cbdcdf;
+}
+
+footer {
+    text-shadow: none;
+    color: rgb(66, 112, 73) ;
+    font-weight: bold;
+    font-size: larger;
 }
 
 
